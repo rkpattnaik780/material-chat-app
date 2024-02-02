@@ -16,8 +16,6 @@ export class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
-    // logErrorToMyService(error, errorInfo);
     console.error(error, errorInfo);
   }
   render() {

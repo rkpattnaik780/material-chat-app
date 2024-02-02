@@ -6,7 +6,7 @@ export const ConversationHeader: React.FC = () => {
         <Card sx={{ maxWidth: 345 }} style={{ margin: "5px 0" }} variant="outlined">
             <CardActionArea>
                 <Grid container spacing={2}>
-                    <Grid xs={4}>
+                    <Grid item={true} xs={4}>
                         <CardMedia
                             component="img"
                             height="100"
@@ -15,7 +15,7 @@ export const ConversationHeader: React.FC = () => {
                             alt="Profile Picture"
                         />
                     </Grid>
-                    <Grid xs={8}>
+                    <Grid item={true} xs={8}>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
                                 Ramakrishna Pattnaik

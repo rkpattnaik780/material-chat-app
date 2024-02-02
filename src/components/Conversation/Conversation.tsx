@@ -3,9 +3,11 @@ import { Button, TextField } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { Message } from "components/Message/Message";
 import { ConversationHeader } from "components/ConversationHeader/ConversationHeader";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Conversation: React.FC = () => {
+
+    const messageListRef = useRef<HTMLDivElement>(null);
 
     const [messages, setMessages] = useState([
         { "content": "Hello there!", time: new Date()},
@@ -17,23 +19,29 @@ export const Conversation: React.FC = () => {
     const [messageInput, setMessageInput] = useState<string>("");
 
     const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+        if(messageInput === "" ) return;
+        console.log(messageInput.trim());
+        if(!messageInput.trim().length) return;
         e.preventDefault();
         setMessages((messages) => [...messages, { content: messageInput, time: new Date() }]);
         setMessageInput("");
     }
+ 
+    useEffect(() => {
+        messageListRef.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" });
+    }, [messages.length]);
 
     return (
         <>  
             <div style={{ border: "1px solid black", borderRadius: "5px", padding: "5px", position: "sticky"}}>
                 <ConversationHeader />
-                <div style={{ height: "70vh", overflowY: "scroll" }}>
+                <div style={{ height: "70vh", overflowY: "scroll" }} ref={messageListRef}>
                     {
-                        messages.map(({content, time}) => (
-                            <Message content={content} time={time} />
+                        messages.map(({content, time}, index) => (
+                            <Message content={content} time={time} key={index} />
                         ))
                     }
                 </div>
-                
             </div>
 
             <form style={{ display: "flex", width: "95%", margin: "10px auto", justifyContent: "space-between" }}  noValidate autoComplete="off" onSubmit={sendMessage}>
