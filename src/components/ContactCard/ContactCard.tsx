@@ -1,6 +1,11 @@
 import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 
-export const ContactCard: React.FC = () => (
+interface IContact {
+    name?: string | never;
+    imageURL?: string | never;
+}
+
+export const ContactCard: React.FC<IContact> = ({ name, imageURL }) => (
 
     <Card sx={{ maxWidth: 345 }} style={{ padding: "5px 0"}}>
         <CardActionArea>
@@ -10,14 +15,14 @@ export const ContactCard: React.FC = () => (
                         component="img"
                         height="80"
                         width="80"
-                        image="https://avatars.githubusercontent.com/u/23582438"
+                        image={imageURL || "./profile_pic.png" }
                         alt="Profile Picture"
                     />
                 </Grid>
                 <Grid item={true} xs={8}>
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="div">
-                            Ramakrishna Pattnaik
+                            { name || "John Doe"}
                         </Typography>
                     </CardContent>
                 </Grid>

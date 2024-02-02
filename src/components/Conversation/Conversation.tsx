@@ -1,8 +1,8 @@
 import { Button, TextField } from "@mui/material";
 
 import SendIcon from '@mui/icons-material/Send';
-import { Message } from "components/Message/Message";
-import { ConversationHeader } from "components/ConversationHeader/ConversationHeader";
+import { Message } from "components/Message";
+import { ConversationHeader } from "components/ConversationHeader";
 import { useEffect, useRef, useState } from "react";
 
 export const Conversation: React.FC = () => {
@@ -10,7 +10,7 @@ export const Conversation: React.FC = () => {
     const messageListRef = useRef<HTMLDivElement>(null);
 
     const [messages, setMessages] = useState([
-        { "content": "Hello there!", time: new Date()},
+        {"content": "Hello there!", time: new Date()},
         {"content": "How are you?", time: new Date()},
         {"content": "Will you be available for call in few mins?", time: new Date() },
         {"content": "We can connect over meet", time: new Date() }
@@ -19,10 +19,10 @@ export const Conversation: React.FC = () => {
     const [messageInput, setMessageInput] = useState<string>("");
 
     const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if(messageInput === "" ) return;
         console.log(messageInput.trim());
         if(!messageInput.trim().length) return;
-        e.preventDefault();
         setMessages((messages) => [...messages, { content: messageInput, time: new Date() }]);
         setMessageInput("");
     }

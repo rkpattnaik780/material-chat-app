@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
-import { ContactList } from "components/ContactList/ContactList";
-import { Conversation } from "components/Conversation/Conversation";
+import { ContactList } from "components/ContactList";
+import { Conversation } from "components/Conversation";
 
 export const ChatPage: React.FC = () => {
 
