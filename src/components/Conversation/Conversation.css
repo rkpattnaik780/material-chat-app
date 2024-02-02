@@ -1,0 +1,21 @@
+.wrap-form  {
+    display: "flex";
+    width: "95%";
+    margin: "0 auto";
+    justify-content: "space-between";
+}
+
+.wrap-text {
+    width: "100%";
+}
+
+.button {
+    margin: "10px";
+}
+
+.message-list { 
+    height: "90vh";
+    border: "1px solid black";
+    border-radius: "5px";
+    margin : "16"
+}
